@@ -26,7 +26,6 @@ const getAsignaciones = async (req, res = response) => {
             ...asignacion.toJSON(),
             fecha_entrega: moment(asignacion.fecha_entrega).format('YYYY-MM-DD'),
             fecha_asignacion: asignacion.fecha_asignacion ? moment(asignacion.fecha_asignacion).format('YYYY-MM-DD HH:mm:ss') : null,
-            // Agrega más campos si es necesario
         }));
 
         res.json({
@@ -34,6 +33,7 @@ const getAsignaciones = async (req, res = response) => {
             // Filtra las asignaciones que no no tienen el estado Entregado
             asignaciones: asignacionesFormateadas.filter(asignacion => asignacion.estado !== 'Entregado')
         });
+
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -53,7 +53,7 @@ const crearAsignacion = async (req, res = response) => {
             asignacion
         });
     } catch (error) {
-        console.log(error);
+        console.log(error)
         res.status(500).json({
             ok: false,
             msg: 'Por favor hable con el administrador'
